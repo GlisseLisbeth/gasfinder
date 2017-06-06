@@ -18,20 +18,32 @@ header .fa-chevron-left {
   margin-right: 16px;
 }
 
-.search{
+.panel-search .search {
   padding: 15px;
   background-color: #F44336;
 }
 
-.border-none{
+.panel-search .border-none {
     border: 1px solid #fff;
 }
-.box-shadow{
+.panel-search .box-shadow {
    -webkit-box-shadow: inset 0 0 0 rgb(0, 0, 0) !important;
   box-shadow: inset 0 0 0 rgb(0, 0, 0) !important;
 }
-.border-none:focus{
+.panel-search .border-none:focus {
   border-color: #fff;
   -webkit-box-shadow: inset 0 0 0 rgb(0, 0, 0) !important;
   box-shadow: inset 0 0 0 rgb(0, 0, 0) !important;
+}
+.padding-top-search {
+  padding-top: 5%;
+}
+.color-gray{
+  color: gray;
+}
+.space-result{
+  line-height: 0.3;
+}
+.color-black{
+  color: black;
 }
