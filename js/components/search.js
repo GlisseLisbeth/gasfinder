@@ -50,7 +50,7 @@ const stationItem = (data) =>{
   const address = $('<span class="color-gray space-result">'+data.address+'</span>');
   const district = $('<br><span class="color-gray space-result">'+data.district+'</span>');
   const right = $('<div class="col-lg-4 ol-md-4 col-sm-4 col-xs-4 text-right padding-top-search"></div>');
-  const map = $('<a hre="#"><span class="fa fa-map color-gray pull-rigth" aria-hidden="true"></span></a>');
+  const map = $('<a href="#"><span class="fa fa-map color-gray pull-rigth" aria-hidden="true"></span></a>');
   
   right.append(map);
   left.append(name);
