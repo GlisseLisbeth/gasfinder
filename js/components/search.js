@@ -24,16 +24,27 @@ const Search = (update) =>{
     searchContent.append(stationItem(station));  
   });
   
+  inputSearch.on('keyup', (e) =>{
+    e.preventDefault();
+    var filterStations = filterByDistrict(state.stations,inputSearch.val());
+    reRender(searchContent, filterStations);
+  });
   parent.append(searchInput);
   parent.append(searchContent);
   return parent;
 }
 
+const reRender = (content, filterStations) =>{
+  content.empty();
+  filterStations.forEach((filterStation) =>{
+    content.append(stationItem(filterStation, _ => {reRender(content, filterStations);}));
+  });
+}
 const stationItem = (data) =>{
-  const parentSearchResult = $('<div class="result-search"></div>');
-  const containerSearchResult = $('<div class="container"></div>');
-  const rowSearchResult = $('<div class="row"></div>');
-  const colSearchResult = $('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>');
+  const parentStationItem = $('<div class="result-search"></div>');
+  const containerStationItem = $('<div class="container"></div>');
+  const rowStationItem = $('<div class="row"></div>');
+  const colStationItem = $('<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>');
   const left = $('<div class="col-lg-8 ol-md-8 col-sm-8 col-xs-8"></div>');
   const name = $('<h3 class="space-result"><small class="color-black">'+data.name+'</small></h3>');
   const address = $('<span class="color-gray space-result">'+data.address+'</span>');
@@ -45,13 +56,12 @@ const stationItem = (data) =>{
   left.append(name);
   left.append(address);
   left.append(district);
-  colSearchResult.append(left);
-  colSearchResult.append(right);
-  rowSearchResult.append(colSearchResult);
-  containerSearchResult.append(rowSearchResult);
-  parentSearchResult.append(containerSearchResult);
+  colStationItem.append(left);
+  colStationItem.append(right);
+  rowStationItem.append(colStationItem);
+  containerStationItem.append(rowStationItem);
+  parentStationItem.append(containerStationItem);
   
-
-  return parentSearchResult;
+  return parentStationItem;
   
 }
