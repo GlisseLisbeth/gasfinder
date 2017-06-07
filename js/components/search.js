@@ -27,18 +27,18 @@ const Search = (update) =>{
   inputSearch.on('keyup', (e) =>{
     e.preventDefault();
     const filterStations = filterByDistrict(state.stations,inputSearch.val());
-    reRender(searchContent, filterStations, inputSearch);
+    reRender(searchContent, filterStations, inputSearch, update);
   });
   parent.append(searchInput);
   parent.append(searchContent);
   return parent;
 }
 
-const reRender = (content, filterStations, inputStation) =>{
+const reRender = (content, filterStations, inputStation, update) =>{
   content.empty();
   inputStation.empty();
   filterStations.forEach((filterStation) =>{
-    content.append(stationItem(filterStation, _ => {reRender(content, filterStations, inputStation);}));
+    content.append(stationItem(filterStation, update));
   });
 }
 const stationItem = (data, update) =>{
@@ -51,7 +51,7 @@ const stationItem = (data, update) =>{
   const address = $('<span class="color-gray space-result">'+data.address+'</span>');
   const district = $('<br><span class="color-gray space-result">'+data.district+'</span>');
   const right = $('<div class="col-lg-4 ol-md-4 col-sm-4 col-xs-4 text-right padding-top-search"></div>');
-  const map = $('<a href="#"><span class="fa fa-map color-gray pull-rigth" aria-hidden="true"></span></a>');
+  const map = $('<a class="link-map" href="#"><span class="fa fa-map color-gray pull-rigth" aria-hidden="true"></span></a>');
   
   right.append(map);
   left.append(name);

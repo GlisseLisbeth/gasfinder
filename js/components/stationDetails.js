@@ -1,5 +1,4 @@
 'use strict';
-var map;
 const StationDetails = (update) =>{
   const parent =$('<div class="station-detail"></div>');
   const container = $('<div class="container-fluid"></div>');
@@ -34,16 +33,16 @@ const StationDetails = (update) =>{
   })
   
   $(() => {
-  const map = new GMaps({
-    div: '#map',        
-    lat: state.selectedStation.lat,
-    lng: state.selectedStation.long,
-  });
-  const marker = map.addMarker({
-    lat: state.selectedStation.lat,
-    lng: state.selectedStation.long,
-    title: state.selectedStation.name
-  });  
+    const map = new GMaps({
+      div: '#map',        
+      lat: state.selectedStation.lat,
+      lng: state.selectedStation.long,
+    });
+    const marker = map.addMarker({
+      lat: state.selectedStation.lat,
+      lng: state.selectedStation.long,
+      title: state.selectedStation.name
+    });  
   });
   
   return parent;
