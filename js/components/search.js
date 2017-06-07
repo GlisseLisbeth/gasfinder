@@ -21,26 +21,27 @@ const Search = (update) =>{
   
   const searchContent = $('<div class="content-search"></div>');
   state.stations.forEach((station) => {
-    searchContent.append(stationItem(station));  
+    searchContent.append(stationItem(station,update));  
   });
   
   inputSearch.on('keyup', (e) =>{
     e.preventDefault();
-    var filterStations = filterByDistrict(state.stations,inputSearch.val());
-    reRender(searchContent, filterStations);
+    const filterStations = filterByDistrict(state.stations,inputSearch.val());
+    reRender(searchContent, filterStations, inputSearch);
   });
   parent.append(searchInput);
   parent.append(searchContent);
   return parent;
 }
 
-const reRender = (content, filterStations) =>{
+const reRender = (content, filterStations, inputStation) =>{
   content.empty();
+  inputStation.empty();
   filterStations.forEach((filterStation) =>{
-    content.append(stationItem(filterStation, _ => {reRender(content, filterStations);}));
+    content.append(stationItem(filterStation, _ => {reRender(content, filterStations, inputStation);}));
   });
 }
-const stationItem = (data) =>{
+const stationItem = (data, update) =>{
   const parentStationItem = $('<div class="result-search"></div>');
   const containerStationItem = $('<div class="container"></div>');
   const rowStationItem = $('<div class="row"></div>');
@@ -62,6 +63,11 @@ const stationItem = (data) =>{
   containerStationItem.append(rowStationItem);
   parentStationItem.append(containerStationItem);
   
+  map.on('click', (e) =>{
+    e.preventDefault();
+    state.selectedStation = data;
+    update();
+  });
   return parentStationItem;
   
 }
